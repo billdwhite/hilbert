@@ -11,16 +11,19 @@ diagonal = d3.svg.diagonal()
 function drawTree(treeJsonUrl) { 
   console.log("loading " + treeJsonUrl)
 
-  d3.select(".chart").select("svg").remove()
   
-  var vis = d3.select(".chart").append("svg")
-  .attr("width", w)
-  .attr("height", h)
-  .append("g")
   
   d3.json(treeJsonUrl, function(json) {
     var nodes = tree.nodes(json);
 
+    // Clear old svg
+    d3.select(".chart").select("svg").remove()
+    // Init svg
+    var vis = d3.select(".chart").append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    .append("g")
+    
     var link = vis.selectAll("path.link")
     .data(tree.links(nodes))
     .enter().append("path")
