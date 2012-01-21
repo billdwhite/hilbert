@@ -10,14 +10,15 @@ N = 100
 def bintree_json(request):
   tree = BinaryTree()
   randomtrees.randomTreeInserts(tree, N)
-  return HttpResponse(json.dumps(randomtrees.getDictTree(tree, tree.root)))
+  response_dict = randomtrees.getDictTree(tree, tree.root)
+  return HttpResponse(simplejson.dumps(response_dict), mimetype='application/json')
   
 def avltree_json(request):
   tree = AvlTree()
-  randomtrees.randomTreeInserts(tree, N)
-  return HttpResponse(json.dumps(randomtrees.getDictTree(tree, tree.root)))
+  response_dict = randomtrees.getDictTree(tree, tree.root)
+  return HttpResponse(simplejson.dumps(response_dict), mimetype='application/json')
 
 def redblacktree_json(request):
   tree = RedBlackTree()
-  randomtrees.randomTreeInserts(tree, N)
-  return HttpResponse(json.dumps(randomtrees.getDictTree(tree, tree.root)))
+  response_dict = randomtrees.getDictTree(tree, tree.root)
+  return HttpResponse(simplejson.dumps(response_dict), mimetype='application/json')
