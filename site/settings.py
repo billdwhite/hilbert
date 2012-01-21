@@ -1,4 +1,4 @@
-# Django settings for mysite project.
+# Django settings for site project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -102,10 +102,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'site.urls'
 
 TEMPLATE_DIRS = (
-    'mysite/templates'
+    'site/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
