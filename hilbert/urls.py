@@ -7,15 +7,15 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     # Examples:
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settsiteings.STATIC_ROOT}),
-    url(r'^data/', include('site.apps.data.urls')),
-    url(r'^$', include('site.apps.treevis.urls')),
-    # url(r'^$', 'site.views.home', name='home'),
-    # url(r'^site/', include('site.foo.urls')),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^data/', include('hilbert.apps.data.urls')),
+    url(r'^$', include('hilbert.apps.treevis.urls')),
+    # url(r'^$', 'hilbert.views.home', name='home'),
+    # url(r'^hilbert/', include('hilbert.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.hilbert.urls)),
 )
