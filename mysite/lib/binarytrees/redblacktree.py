@@ -3,6 +3,8 @@ from bintree import BinaryTree, BinaryTreeNode
 BLACK = 0
 RED = 1
 
+""" Delete are bugged """
+
 class RedBlackNode(BinaryTreeNode):
   def __init__(self, tree, key, nil):
     super(RedBlackNode, self).__init__(tree, key, nil)
