@@ -1,0 +1,1 @@
+Requirements doesn't really need psycopg2, but heroku seems to override my own non-db settings with it.
