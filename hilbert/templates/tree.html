@@ -14,7 +14,7 @@
 <div class="header">
   <h2>
   {% for t in treenames %}
-  <a href="/tree/{{t}}/{{num_nodes}}">{{t}}</a>
+  <a href="/tree/{{t}}">{{t}}</a>
   {% endfor %}
   </h2>
 </div>
@@ -23,7 +23,7 @@
     <div class="chart">
     </div>
     <script>
-      var dataUrl = "/tree/{{treename}}/{{num_nodes}}/data";
+      var dataUrl = "/tree/{{treename}}/data";
       d3.select("button").on("click", function() {
         drawTree(dataUrl);
       })

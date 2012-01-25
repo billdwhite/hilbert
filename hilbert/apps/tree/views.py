@@ -17,26 +17,30 @@ trees = {
   "redblacktree": RedBlackTree
 }
 
-def index(request, treename="binarysearchtree", inserts=None, N=None):
-  if N is None: N = DefaultN
+def index(request, treename="binarysearchtree"):
+  numnodes = request.GET.get("N", DefaultN)
+  sequence = request.GET.get("seq", '')
   t = django.template.loader.get_template("tree.html")
+  log.info(sequence)
   contextmap = {}
   contextmap["title"] = "Tree"
   contextmap["treename" ] = treename
-  contextmap["num_nodes"] = N
+  contextmap["sequence"] = sequence
+  contextmap["numnodes"] = numnodes
   treenames = trees.keys()
   treenames.sort()
   contextmap["treenames"] = treenames
   return HttpResponse(t.render(Context(contextmap)))
 
-def data(request, treename="binarysearchtree", inserts=None, N=None):
-  if N is None: N = DefaultN
+def data(request, treename="binarysearchtree"):
+  numnodes = request.GET.get("N", DefaultN)
+  sequence = request.GET.get("seq", '')
   tree = trees[treename]()
-  if inserts is None:
-    randomtrees.randomTreeInserts(tree, int(N))
+  if len(sequence) > 0:
+    log.info(sequence)
+    for x in sequence.split(','):
+      tree.insert(int(x))
   else:
-    log.info(inserts)
-    for x in inserts.split('.'):
-      tree.insert(x)
+    randomtrees.randomTreeInserts(tree, int(numnodes))
   response_dict = randomtrees.getDictTree(tree, tree.root)
   return HttpResponse(json.dumps(response_dict), mimetype='application/json')

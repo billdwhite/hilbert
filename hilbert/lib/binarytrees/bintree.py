@@ -29,7 +29,7 @@ class BinaryTree(object):
     while x is not self.nil:
       y = x
       if x.key == z.key: # we enforce unique keys
-        return
+        return x
       elif z.key < x.key:
         x = x.left
       else: # x.key > z.key

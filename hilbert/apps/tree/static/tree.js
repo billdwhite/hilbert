@@ -1,4 +1,18 @@
 
+function randOrd(){
+  return (Math.round(Math.random())-0.5);
+}
+
+function randomSequence(N) {
+  seq = new Array();
+  for (i = 1; i <= N; i++) {
+    seq.push(i);
+  }
+  seq.sort(randOrd);
+  return seq;
+}
+
+
 var w = 1000;
 var h = 400;
 
