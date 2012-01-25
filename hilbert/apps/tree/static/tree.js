@@ -12,32 +12,15 @@ function randomSequence(N) {
   return seq;
 }
 
-
-var w = 1000;
-var h = 400;
-
-var tree = d3.layout.tree()
-.size([w-10, h-10])
-.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
-
-diagonal = d3.svg.diagonal()
-
 function drawTree(treeJsonUrl) { 
   console.log("loading " + treeJsonUrl)
-  var radius = 8;
-  var cursorRadius = radius * 3;
-  var padding = 20;
-
   d3.json(treeJsonUrl, function(json) {
+    
     var nodes = tree.nodes(json);
 
     // Clear old svg
-    d3.select(".chart").select("svg").remove()
+    //d3.select(".chart").select("svg").remove()
     // Init svg
-    var vis = d3.select(".chart").append("svg")
-    .attr("width", w)
-    .attr("height", h)
-    .style("padding", padding + "px")
 
     var svg = d3.select(".chart svg");
   
@@ -58,8 +41,20 @@ function drawTree(treeJsonUrl) {
     */
 
     var link = vis.selectAll("path.link")
-    .data(tree.links(nodes))
-    .enter().append("path")
+    .data(tree.links(nodes), function(d) {
+      var id = d.source.key
+      if (d.target.key == d.source.children[0].key) {
+        id = id + "L"
+      } else if (d.target.key == d.source.children[1].key){
+        id = id + "R"
+      }
+      if (d.target.key == "none") {
+        id = id + "none"
+      }
+      return id
+    });
+    
+    link.enter().append("path")
     .attr("class", "link")
     .attr("display", function(link) {
       if (link.target.key == "none") {
@@ -68,9 +63,19 @@ function drawTree(treeJsonUrl) {
     })
     .attr("d", diagonal);
 
+    link.transition()
+    .duration(1000)
+    .attr("d", diagonal)
+
+    link.exit().remove();
+    
     var node = vis.selectAll("g.node")
-    .data(nodes)
-    .enter().append("g")
+    .data(nodes, function(d) {
+      return d.key + "" + d.colour;
+    });
+    
+    node.enter()
+    .append("g")
     .attr("class", "node")
     .attr("id", function(d) { return "node-" + d.key})
     .attr("transform", function(d) { return "translate(" + d.x + "," +  d.y + ")"; })
@@ -95,5 +100,11 @@ function drawTree(treeJsonUrl) {
     .attr("transform", "translate(0,3)")
     .attr("style", "text-anchor: middle")
     .attr("class", "nodekey")
+    
+    node.transition()
+    .duration(800)
+    .attr("transform", function(d){return "translate(" + d.x + "," +  d.y + ")";})
+    
+    node.exit().remove();
   });
 }
