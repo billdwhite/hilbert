@@ -4,9 +4,17 @@ body {
 }
 
 .chart svg {
-  margin: 10px;
-  padding: 20px;
+  border-width: 1px;
+  border-style: solid;
 }
+
+div.header {
+  text-align: center;
+}
+
+div.container { 
+  text-align: center;
+}  
 
 path.link {
   fill: none;
@@ -15,9 +23,16 @@ path.link {
 }
 
 .node circle {
-  fill: WHITE;
+  fill: lightblue;
   stroke: #000;
-  stroke-width: 1px;
+  stroke-width: 1.5px;
+}
+
+.cursor circle{
+  fill: none;
+  stroke: #000;
+  stroke-width: 0.5px;
+  stroke-dasharray: 3, 2;
 }
 
 circle.red {

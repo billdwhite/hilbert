@@ -76,7 +76,6 @@ def run(trees, N):
 
 def randomTreeInserts(tree, N):
   sofar = set()
-  print "adding", N, "nodes"
   keys = range(N)
   random.shuffle(keys)
   for key in keys:
