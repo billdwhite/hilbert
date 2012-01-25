@@ -20,16 +20,15 @@
 </div>
 <div class="container">
   <button>Randomise</button>
-    <div class="chart">
-    </div>
-    <script>
-      var dataUrl = "/tree/{{treename}}/data";
-      d3.select("button").on("click", function() {
-        drawTree(dataUrl);
-      })
+  <div class="chart">
+  </div>
+  <script>
+    var dataUrl = "/tree/{{treename}}/data";
+    d3.select("button").on("click", function() {
       drawTree(dataUrl);
-    </script>
-    
+    })
+    drawTree(dataUrl);
+  </script>
 </div>
 </body>
 </html>
