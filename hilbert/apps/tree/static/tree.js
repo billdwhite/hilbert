@@ -22,12 +22,18 @@ var tree = d3.layout.tree()
   .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 var diagonal = d3.svg.diagonal();
 var vis = null;
+var svg = null;
 
 function initChart() {
   vis = d3.select(".chart").append("svg")
   .attr("width", w)
   .attr("height", h)
   .style("padding", padding + "px")
+  
+  svg = d3.select(".chart svg");
+  
+  svg.append("g").attr("class","edges")
+  svg.append("g").attr("class","nodes")
 }
 
 function drawTree(treeJsonUrl) { 
@@ -39,8 +45,6 @@ function drawTree(treeJsonUrl) {
     // Clear old svg
     //d3.select(".chart").select("svg").remove()
     // Init svg
-
-    var svg = d3.select(".chart svg");
   
     /*
     // create cursor
@@ -58,7 +62,7 @@ function drawTree(treeJsonUrl) {
     });
     */
 
-    var link = vis.selectAll("path.link")
+    var link = vis.select(".edges").selectAll("path.link")
     .data(tree.links(nodes), function(d) {
       var id = d.source.key
       if (d.target.key == d.source.children[0].key) {
@@ -87,7 +91,7 @@ function drawTree(treeJsonUrl) {
 
     link.exit().remove();
     
-    var node = vis.selectAll("g.node")
+    var node = vis.select(".nodes").selectAll("g.node")
     .data(nodes, function(d) {
       return d.key + "_" + d.colour;
     });
@@ -124,20 +128,5 @@ function drawTree(treeJsonUrl) {
     .attr("transform", function(d){return "translate(" + d.x + "," +  d.y + ")";})
     
     node.exit().remove();
-    
-    // custom sort to make sure edges are drawn below nodes.
-    d3.selectAll(".chartelem").sort(function(x,y) {
-      xEdge = x.source != null;
-      yEdge = y.source != null;
-      if (xEdge && !yEdge) {
-        return -1
-      } else if (yEdge && !xEdge){
-        return 1
-      } else { 
-        if (x<y) return -1;
-        if (x>y) return 1;
-        return 0;
-      }
-    });
   });
 }
