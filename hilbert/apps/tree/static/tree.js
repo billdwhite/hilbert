@@ -12,6 +12,24 @@ function randomSequence(N) {
   return seq;
 }
 
+var w = 1000;
+var h = 400;
+var radius = 8;
+var cursorRadius = radius * 3;
+var padding = 20;
+var tree = d3.layout.tree()
+  .size([w-10, h-10])
+  .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
+var diagonal = d3.svg.diagonal();
+var vis = null;
+
+function initChart() {
+  vis = d3.select(".chart").append("svg")
+  .attr("width", w)
+  .attr("height", h)
+  .style("padding", padding + "px")
+}
+
 function drawTree(treeJsonUrl) { 
   console.log("loading " + treeJsonUrl)
   d3.json(treeJsonUrl, function(json) {
