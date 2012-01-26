@@ -87,7 +87,7 @@ function drawTree(treeJsonUrl) {
     
     var node = vis.select(".nodes").selectAll("g.node")
     .data(nodes, function(d) {
-      return d.key + "_" + d.colour;
+      return d.key;
     });
     
     node.enter()
