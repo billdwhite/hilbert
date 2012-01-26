@@ -64,16 +64,10 @@ function drawTree(treeJsonUrl) {
 
     var link = vis.select(".edges").selectAll("path.link")
     .data(tree.links(nodes), function(d) {
-      var id = d.source.key
-      if (d.target.key == d.source.children[0].key) {
-        id = id + "L"
-      } else if (d.target.key == d.source.children[1].key){
-        id = id + "R"
+      var id = d.target.key
+      if (d.target.key != "none") {
+        return d.target.key
       }
-      if (d.target.key == "none") {
-        id = id + "none"
-      }
-      return id
     });
     
     link.enter().append("path")
@@ -87,7 +81,7 @@ function drawTree(treeJsonUrl) {
 
     link.transition()
     .duration(1000)
-    .attr("d", diagonal)
+    .attr("d", diagonal);
 
     link.exit().remove();
     
@@ -106,7 +100,7 @@ function drawTree(treeJsonUrl) {
 
     node.append("circle")
     .attr("r", radius)
-    .attr("class", function(d) { if (d.colour == 1) return "red"; })
+    .attr("class", function(d) { if (d.colour == 1) return "red"; });
 
     node.append("circle")
     .attr("r", cursorRadius)
@@ -121,11 +115,11 @@ function drawTree(treeJsonUrl) {
     node.append("text").text(function(d){return d.key;})
     .attr("transform", "translate(0,3)")
     .attr("style", "text-anchor: middle")
-    .attr("class", "nodekey")
+    .attr("class", "nodekey");
     
     node.transition()
     .duration(1000)
-    .attr("transform", function(d){return "translate(" + d.x + "," +  d.y + ")";})
+    .attr("transform", function(d){return "translate(" + d.x + "," +  d.y + ")";});
     
     node.exit().remove();
   });
