@@ -55,7 +55,7 @@ function drawTree(treeJsonUrl) {
     });
     
     link.enter().append("path")
-    .attr("class", "link")
+    .attr("class", "chartelem link")
     .attr("display", function(link) {
       if (link.target.key == "none") {
         return "none";
@@ -76,7 +76,7 @@ function drawTree(treeJsonUrl) {
     
     node.enter()
     .append("g")
-    .attr("class", "node")
+    .attr("class", "chartelem node")
     .attr("id", function(d) { return "node-" + d.key})
     .attr("transform", function(d) { return "translate(" + d.x + "," +  d.y + ")"; })
     .attr("display", function(d) { if (d.key == "none") return "none"})
@@ -106,5 +106,20 @@ function drawTree(treeJsonUrl) {
     .attr("transform", function(d){return "translate(" + d.x + "," +  d.y + ")";})
     
     node.exit().remove();
+    
+    // custom sort to make sure edges are drawn below nodes.
+    d3.selectAll(".chartelem").sort(function(x,y) {
+      xEdge = x.source != null;
+      yEdge = y.source != null;
+      if (xEdge && !yEdge) {
+        return -1
+      } else if (yEdge && !xEdge){
+        return 1
+      } else { 
+        if (x<y) return -1;
+        if (x>y) return 1;
+        return 0;
+      }
+    });
   });
 }
