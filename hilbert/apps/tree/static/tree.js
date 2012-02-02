@@ -19,7 +19,7 @@ var cursorRadius = radius * 3;
 var padding = 20;
 var tree = d3.layout.tree()
   .size([w-10, h-10])
-  .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
+  //.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 var diagonal = d3.svg.diagonal();
 var vis = null;
 var svg = null;
