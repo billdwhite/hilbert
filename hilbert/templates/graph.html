@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>{{title}}</title>
-<link rel="stylesheet" href="/static/tree.css">
+<link rel="stylesheet" href="/static/graph.css">
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.7.4"></script>
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.chart.js?2.7.4"></script>
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?2.7.4"></script>
@@ -12,7 +12,7 @@
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?2.7.4"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
-<script type="text/javascript" src="/static/tree.js"></script>
+<script type="text/javascript" src="/static/graph.js"></script>
 </head>
 <body>
 <div class="header">
@@ -28,11 +28,11 @@
   </div>
   <script>
     initChart();
-    var dataUrl = "/tree/{{treename}}/data";
+    var dataUrl = "/graph/data";
     d3.select("button").on("click", function() {
-      drawTree(dataUrl);
+      drawGraph(dataUrl);
     })
-    drawTree(dataUrl);
+    drawGraph(dataUrl);
   </script>
 </div>
 </body>

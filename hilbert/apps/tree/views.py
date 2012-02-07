@@ -43,4 +43,5 @@ def data(request, treename="binarysearchtree"):
   else:
     randomtrees.randomTreeInserts(tree, int(numnodes))
   response_dict = randomtrees.getDictTree(tree, tree.root)
+  
   return HttpResponse(json.dumps(response_dict), mimetype='application/json')

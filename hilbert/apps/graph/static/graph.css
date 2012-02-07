@@ -1,0 +1,61 @@
+body {
+  font: 10px sans-serif;
+  margin: 0;
+}
+
+.chart svg {
+  border-width: 1px;
+  border-style: solid;
+}
+
+div.header {
+  text-align: center;
+}
+
+div.container { 
+  text-align: center;
+}  
+
+line.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 2px;
+}
+
+.node circle {
+  fill: lightblue;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.cursor circle{
+  fill: none;
+  stroke: #000;
+  stroke-width: 0.5px;
+  stroke-dasharray: 3, 2;
+}
+
+circle.red {
+  fill: RED;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #fff;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}

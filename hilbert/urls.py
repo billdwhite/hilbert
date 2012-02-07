@@ -9,6 +9,12 @@ from django.views.generic.simple import redirect_to
 urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     
+    url(r'^automaton/data', 'apps.automaton.views.data'),
+    url(r'^automaton', 'apps.automaton.views.index'),
+
+    url(r'^graph/data', 'apps.graph.views.data'),
+    url(r'^graph', 'apps.graph.views.index'),
+    
     url(r'^tree/(?P<treename>binarysearchtree)/data', 'apps.tree.views.data'),
     url(r'^tree/(?P<treename>binarysearchtree)', 'apps.tree.views.index'),
 
@@ -18,5 +24,6 @@ urlpatterns = patterns('',
     url(r'^tree/(?P<treename>redblacktree)/data', 'apps.tree.views.data'),
     url(r'^tree/(?P<treename>redblacktree)', 'apps.tree.views.index'),
 
-    ('^.*$', redirect_to, {'url': '/tree/binarysearchtree'}),
+    ('^tree.*$', redirect_to, {'url': '/tree/binarysearchtree'}),
+    ('^graph.*$', redirect_to, {'url': '/graph'}),
 )
