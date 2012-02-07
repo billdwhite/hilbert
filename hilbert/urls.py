@@ -24,6 +24,5 @@ urlpatterns = patterns('',
     url(r'^tree/(?P<treename>redblacktree)/data', 'apps.tree.views.data'),
     url(r'^tree/(?P<treename>redblacktree)', 'apps.tree.views.index'),
 
-    ('^tree.*$', redirect_to, {'url': '/tree/binarysearchtree'}),
-    ('^graph.*$', redirect_to, {'url': '/graph'}),
+    ('^.*$', redirect_to, {'url': '/tree/binarysearchtree'}),
 )
