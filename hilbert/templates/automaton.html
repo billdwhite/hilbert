@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<title>{{title}}</title>
+<link rel="stylesheet" href="/static/automaton.css">
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.chart.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.csv.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.geo.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.geom.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.7.4"></script>
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.time.js?2.7.4"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="/static/automaton.js"></script>
+</head>
+<body>
+<div class="header">
+  <h2>Bla bla</h2>
+</div>
+<div class="container">
+  <button>Randomise</button>
+  <div class="chart">
+  </div>
+  <script>
+    initChart();
+    var dataUrl = "/automaton/data";
+    d3.select("button").on("click", function() {
+      drawGraph(dataUrl);
+    })
+    drawGraph(dataUrl);
+  </script>
+</div>
+</body>
+</html>
