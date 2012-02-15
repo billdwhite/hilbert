@@ -17,5 +17,5 @@ def index(request):
   return HttpResponse(t.render(Context(contextmap)))
 
 def data(request):
-  M = trie.Trie(["aba", "aca"])
+  M = trie.Trie(["abc", "abb", "caa", "cabb"])
   return HttpResponse(json.dumps(M.getDict()), mimetype='application/json')
